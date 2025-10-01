@@ -1,0 +1,26 @@
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+start = root
+
+root = element root {text | title | date+ | comment+ | journal | author+ | business | post+ | quote | sub | cap | p | tip+ | closer | book}
+
+type = attribute type {pub+ | blog+ | info+ | blogger+}
+title = element title {text}
+date = element date {text | "m/d/y"?}
+business = element business {text}
+blog = attribute blog {text}
+author = element author {text}
+journal = element journal {text}
+comment = element comment {count}
+count = attribute count {text}
+blogger = attribute blogger {type}
+info = attribute info {type}
+pub = attribute pub {type}
+post = element post {text}
+quote = element quote {text}
+sub = element sub {text}
+cap = element cap {text}
+p = element p {text}
+tip = element tip {text | "num"}
+closer = element closer {text}
+book = element book {text}
