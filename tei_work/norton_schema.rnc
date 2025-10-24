@@ -1,0 +1,59 @@
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+# TEI Travel Journal Excerpt Schema (Relax NG Compact Syntax)
+# Fixed: avoid using the built-in terminal name "text" as a rule name
+
+namespace tei = "http://www.tei-c.org/ns/1.0"
+
+start = TEI
+
+TEI = element tei:TEI {
+  teiHeader,
+  teiText
+}
+
+teiHeader = element tei:teiHeader {
+  fileDesc
+}
+
+fileDesc = element tei:fileDesc {
+  titleStmt,
+  publicationStmt,
+  sourceDesc
+}
+
+titleStmt = element tei:titleStmt {
+  element tei:title { text },
+  element tei:author { text }
+}
+
+publicationStmt = element tei:publicationStmt {
+  element tei:p { text }
+}
+
+sourceDesc = element tei:sourceDesc {
+  element tei:p { text }
+}
+
+teiText = element tei:text {
+  body
+}
+
+body = element tei:body {
+  p+
+}
+
+p = element tei:p {
+  mixed {
+    ( choice | pb )*
+  }
+}
+
+choice = element tei:choice {
+  element tei:sic { text },
+  element tei:corr { text }
+}
+
+pb = element tei:pb {
+  attribute n { text }
+}
